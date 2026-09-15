@@ -24,7 +24,7 @@ LCC Compliance -> Save the longevity of the materials. Are we able to prolong th
 4. Transportation and import of building materials is often a big contributer to higher GWP. Choosing materials that are locally sourced, could potentially diminis the CO2 levels in the built enviroment. Integrating possible alternatives for material choices in the BIM, could be a viable solution.
 5. Buildings arent made for anybody -> Universal design
 6. Water is being wasted -> Are we able to save water by choosing the right materials 
-7. Make LCC Compliance -> Prolong the lifetime of materials. 
+7. Some materials dont get to forfill their entire life exspectancy. Som material lifetimes are able to be prolonged with the right meassures. Implementing a lifetime expectancy and possible meassures to prolong lifetime expectancy could be a meassure to make sure the materials life expectancy is uttillized. 
 
 xxx
 
