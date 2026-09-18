@@ -28,8 +28,10 @@ LCC Compliance -> Save the longevity of the materials. Are we able to prolong th
 3. 5. Buildings arent made for anybody -> Universal design
 6. Water is being wasted -> Are we able to save water by choosing the right materials  -->
 
-xxx
-
 # Report where the claim was found
 
-xxx
+Group 6 (Section 6.1, pages 21–22) and Group 1 (Section 6.3, page 18)
+Group 1 (Section 1.2, page 3; Section 6, page 17) and Group 4 (DGNB Section, page 9)
+Group 1 (Section 6.2 & 6.5, pages 18–19) and Group 9 (Section 7.2.1 and 7.4, pages 34, 37)
+Group 9 (Section 7.3) and Group 3 (Section 3.1, page 9)
+Group 3 (Section 3.3, pages 10–13) and Group 2 (Section 6, page 29)
