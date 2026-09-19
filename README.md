@@ -17,6 +17,19 @@ Buildings overheating and are freezing in the winter
 LCC Compliance -> Save the longevity of the materials. Are we able to prolong the lifetime of the mateials, if we know the 'rest of their lifetimes'
 
 
+
+
+The use of new materials and components is the primary contributer for environmental impact and expenses. This means that the fundamental issue, when assessing the sustainability and financial viability of a project, lays in the process of finding and selecting the most optimal materials. Thus, being able to properly decide between reusing and replacing materials stands as a crucial and essential part of this process and requires having the necessary and sufficient specifications or information on specific materials. Listed below is important information for materials.<br>
+
+-	The actual lifetime and specifications on ways to extend the longevity of the materials.<br>
+-	The energy consumption due to the use of the materials, for example regarding overheating and heat loss.<br>
+-	The potential environmental impact from the transportation of the materials.<br>
+-	The environmental impact from the production of the materials, not only the GWP, but also other impacts such as water usage.<br>
+-	The cost of both the purchase and the maintenance of the materials.<br>
+-	Sustainability certificates<br>
+The process of acquiring sustainability certificates is considerably time consuming and costly. Making essential building information more accessible, should support a more efficient and obtainable process of granting certificates.
+
+
 # Identified possible solutions
 **1. Reduce waste through documentation:** In the Danish building industry, many building materials are going to waste despite still being useable. This is because, when a building is demolished it is often cheaper for the building owner to get rid of them, instead of reuseing or recycle them. This is primarly due to sorting and documentation process. This is often a tidious process that requires testing and time. A way to potentionally reduce the amount of time and testing could be to integrate waste mananagement into the BIM. If you are able to see the reuseability of a brick, for example, you would not need to allocate as much time towards testing the properties of the material. <br>
 **2. Easier certification:** As sustainability has become more and more relevant in the built environment, so has the need of standarized sustainability certificates. In Denmark the most used and common certification is DGNB (Deutsche Gesellschaft für Nachhaltiges Bauen). The DGNB certification can be a huge expense for the average building owner, hence many do not certify their buildings. This makes it harder to compare two similar buildings to determine which is performing 'better'. It is also proven that certified buildings in gerneal performs better in terms of environmental-, economical- and social sustainability. Integrating DGNB compliance into BIM, could potentially save time on getting a DGNB auditor to certify ones building - making it more affordable for the average building owner to implement more sustainability in their projects.<br>
