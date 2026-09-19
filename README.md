@@ -26,7 +26,7 @@ The use of new materials and components is the primary contributer for environme
 -	The potential environmental impact from the transportation of the materials.<br>
 -	The environmental impact from the production of the materials, not only the GWP, but also other impacts such as water usage.<br>
 -	The cost of both the purchase and the maintenance of the materials.<br>
--	Sustainability certificates<br>
+-	Sustainability certificates
 <br>
 The process of acquiring sustainability certificates is considerably time consuming and costly. Making essential building information more accessible, should support a more efficient and obtainable process of granting certificates.
 
