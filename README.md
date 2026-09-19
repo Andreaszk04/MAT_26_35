@@ -30,8 +30,11 @@ LCC Compliance -> Save the longevity of the materials. Are we able to prolong th
 
 # Report where the claim was found
 
-Group 6 (Section 6.1, pages 21–22) and Group 1 (Section 6.3, page 18)
-Group 1 (Section 1.2, page 3; Section 6, page 17) and Group 4 (DGNB Section, page 9)
-Group 1 (Section 6.2 & 6.5, pages 18–19) and Group 9 (Section 7.2.1 and 7.4, pages 34, 37)
-Group 9 (Section 7.3) and Group 3 (Section 3.1, page 9)
-Group 3 (Section 3.3, pages 10–13) and Group 2 (Section 6, page 29)
+Group 1 (Section 1.2, page 3; Section 6, page 17-19)
+Group 2 (Section 6, page 29)
+Group 3 (Section 3, page 9-13)
+Group 4 (DGNB Section, page 9)
+Group 6 (Section 6.1, page 21) 
+Group 8 (Section 5.4, page 40)
+Group 9 (Section 7.3, 7.4 and 7.6, pages 35-38)
+
