@@ -5,20 +5,6 @@
 Materials / LCA
 
 # Identified Issue
-
-Materials being wasted 
-Materials in regard to energy consumption - Materials are able to save power 
-DGNB or EU Tax compliance - we are using too much time and money to get sustainability certificates
-Locally sourced materials - We are using to many materials from abroad -> if we were able to source them locally, we would be able to emit less CO2
-Buildings are not being suppoerting Universal Design -> "we are all disabled until we are enabled" - Tim 
-Expand the material bank, so you can see the emmissions from all building materials. 
-Water usage - How much water can we save by choosing the right materials. 
-Buildings overheating and are freezing in the winter
-LCC Compliance -> Save the longevity of the materials. Are we able to prolong the lifetime of the mateials, if we know the 'rest of their lifetimes'
-
-
-
-
 The use of new materials and components is the primary contributer for environmental impact and expenses. This means that the fundamental issue, when assessing the sustainability and financial viability of a project, lays in the process of finding and selecting the most optimal materials. Thus, being able to properly decide between reusing and replacing materials stands as a crucial and essential part of this process and requires having the necessary and sufficient specifications or information on specific materials. Listed below is important information for materials.<br>
 
 -	The actual lifetime and specifications on ways to extend the longevity of the materials.<br>
