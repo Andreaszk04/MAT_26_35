@@ -10,7 +10,7 @@
 
 ## A2b
 
-The team chose reports: 2603, 2608 and 2602<br>
+The team chose reports: 2602, 2603 and 2608<br>
 
 Building #2602:<br>
 *“The project will also highlight areas of opportunities where sustainability performance has potential to be improved, while keeping potential considerations of regulatory requirements and environmental trade- offs in mind. Economic sustainability will be evaluated through a life cycle costing (LCC) analysis”* (Section 6, page 29)<br>
@@ -21,8 +21,8 @@ Building #2603:<br>
 Building #2608:<br>
 *“For the new materials in the renovation project the materials consultants have will make a material catalog highlighting the GWP-impact of each of the options. This will be presented for the other roles and the goal is to pick the new materials with the lowest GWP-output while still satisfying each of the other roles.”* (Section 5.3, page 38)<br>
 
-Claim:
-Creating LCA assessments combined with other factors such as financial and energy implications.
+Claim:<br>
+Creating LCA assessments combined with other factors such as financial and energy implications.<br>
 This facilitates a more centralized and properly process of selecting materials. 
 
 
