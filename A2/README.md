@@ -36,20 +36,19 @@ To check what are the emissions. Extracting GWP and u vlaue from the walls/ othe
 
 
 ## A2c
-
-**Q: How would you check this claim?**
-
-**Q: When would this claim need to be checked?**
-
-**Q: What information does this claim rely on?**
-
-**Q: What phase? planning, design, build, or operation**
-
-**Q: What BIM purpose is required? Gather, generate, analyze, communicate, or realize?**
-
-**Q: Review use case examples - do any of these help? What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.**
-
-**Q: Produce a BPMN drawing for your chosen use case. Link to this so we can see it in your markdown file. To do this, you will have to save it as an SVG. Please also save the BPMN with it.**
+# How you would check this claim?
+Firstly, it would be wise to test whether the relevant data about the walls, slaps etc. are avaliable in the IFC model in order to check them. Afterwards, it would like to check this claim by using a previous groups tool, that seems capable to asses building materials and properties and add aditional atributes to the tool. 
+# When would this claim need to be checked?
+Information about materials are usually most valuable in the design phaases of the building. In the case of a renovation, this information would be most valuable during the assesment of the building construction, in regards to how much CO2 it would take to replace an element entirelyg or renovate it. However, it is good practices to keep check on the materials overall GWP (Global Warmning Potential). 
+# What information does this claim rely on?
+Claims in the reports and available model data
+# What phase? planning, design, build or operation.
+Planning and design phases are the most crucial phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. 
+# What BIM purpose is required? Gather, generate, analyse, communicate or realise?
+The BIM Purpose of this study is to asses a building element to make it 'the best' it possible can be across a variety of parameters. The purpose is then to give the engineer the tools to asses a renovation case with focus on optimizing a component. 
+# Review use case examples - do any of these help?, What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.
+A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
+# Produce a BPMN-diagram for your chosen use case. Link to this so we can see it in your markdown file. To do this you will have to save it as an SVG, please also save the BPMN with it. You can use this online tool to create BPMN-diagrams.
 
 ## A2d
 
