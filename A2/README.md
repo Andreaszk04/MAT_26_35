@@ -49,7 +49,7 @@ The BIM Purpose of this study is to asses a building element to make it 'the bes
 # Review use case examples - do any of these help?, What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.
 A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
 # Produce a BPMN-diagram for your chosen use case. Link to this so we can see it in your markdown file. To do this you will have to save it as an SVG, please also save the BPMN with it. You can use this online tool to create BPMN-diagrams.
-
+![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/diagram%20(1).svg)
 ## A2d
 
 **Q: From the ‘whole use case’ identify where a new script / function / tool is needed. Highlight this in your BPMN diagram. Show this clearly in a new SVG diagram.**
