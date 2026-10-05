@@ -23,73 +23,81 @@ Building 2603:<br>
 Building 2608:<br>
 *“For the new materials in the renovation project the materials consultants have will make a material catalog highlighting the GWP-impact of each of the options. This will be presented for the other roles and the goal is to pick the new materials with the lowest GWP-output while still satisfying each of the other roles.”* (Section 5.3, page 38)<br>
 
-**Q: Identify a ‘claim’ / issue / fact to check from one of those reports.**
+**Q: Identify a ‘claim’ / issue / fact to check from one of those reports.**<br>
 Creating LCA assessments combined with other factors such as financial and energy implications.<br>
 This facilitates a more centralized and properly process of selecting materials. 
 
-**Q: Write a short description of the claim you wish to check. It could be the same as the previous assignment, or if this is too simple you could identify a new claim from the report to check in this assignment.**
-
+**Q: Write a short description of the claim you wish to check. It could be the same as the previous assignment, or if this is too simple you could identify a new claim from the report to check in this assignment.**<br>
 To check what are the emissions. Extracting GWP and u vlaue from the walls/other elements of the blender model. **TO BE SPECIFIED**
 
-**Q: Justify your selection of your claim**
+**Q: Justify your selection of your claim**<br>
 
 
 
 ## A2c
-**Q: How you would check this claim?**
-Firstly, it would be wise to test whether the relevant data about the walls, slabs etc. are avaliable in the IFC model in order to check them. Afterwards, it would like to check this claim by using a previous groups tool, that seems capable to asses building materials and properties and add aditional atributes to the tool. 
+**Q: How you would check this claim?**<br>
+Firstly, it would be wise to test whether the relevant data about the walls, slabs etc. are avaliable in the IFC model in order to check them. Afterwards, it would be wise to check this claim by using a previous groups tool, that seems capable to asses building materials and properties and add aditional atributes to the tool. 
 
-**Q: When would this claim need to be checked?**
+**Q: When would this claim need to be checked?**<br>
 Information about materials are usually most valuable in the design phases of the building. In the case of a renovation, this information would be most valuable during the assesment of the building construction, in regards to how much CO2 it would take to replace an element entirelyg or renovate it. However, it is good practices to keep check on the materials overall GWP (Global Warmning Potential). 
 
-**Q: What information does this claim rely on?**
+**Q: What information does this claim rely on?**<br>
 Claims in the reports and available model data
 
-**Q: What phase? planning, design, build or operation.**
+**Q: What phase? planning, design, build or operation.**<br>
 Planning and design phases are the most crucial phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. Because of this, theese stages can also be be overwelming for the consultatns, as they need to make a lot of decisions in due time. This can lead to decisions made based of off 'BAU' (Buisness as usual) decisions, that might not be reflect the actual needs of the occupants or the building owners needs. 
 
-**Q: What BIM purpose is required? Gather, generate, analyse, communicate or realise?**
+**Q: What BIM purpose is required? Gather, generate, analyse, communicate or realise?**<br>
 The BIM Purpose of this study is to asses a building element to make it 'the best' it possible can be across a variety of parameters. The purpose is then to give the engineer the tools to asses a renovation case with focus on optimizing a component. 
 
-**Q: Review use case examples - do any of these help?, What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.**
+**Q: Review use case examples - do any of these help?, What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.**<br>
 A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
 
-**Q: Produce a BPMN-diagram for your chosen use case. Link to this so we can see it in your markdown file. To do this you will have to save it as an SVG, please also save the BPMN with it. You can use this online tool to create BPMN-diagrams.**
+**Q: Produce a BPMN-diagram for your chosen use case. Link to this so we can see it in your markdown file. To do this you will have to save it as an SVG, please also save the BPMN with it. You can use this online tool to create BPMN-diagrams.**<br>
 ![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/diagram%20(1).svg)
 
 ## A2d
 
-**Q: From the ‘whole use case’ identify where a new script / function / tool is needed. Highlight this in your BPMN diagram. Show this clearly in a new SVG diagram.**
+**Q: From the ‘whole use case’ identify where a new script / function / tool is needed. Highlight this in your BPMN diagram. Show this clearly in a new SVG diagram.**<br>
+
 
 ## A2e
 
-**Q: Describe in words your idea for your own OpenBIM ifcOpenShell Tool in Python.**
+**Q: Describe in words your idea for your own OpenBIM ifcOpenShell Tool in Python.**<br>
 The idea is to make a tool that is able to assess the consequenses of the downstream material choices in the next 50 years. This will be based on performance variables; loads, insulation (heat transfer), maintenance, temperature change due to climate change. On the bases of these performance variables, the wall will be assessed on; GWP50, LCC.
 
 This tool will be utilized best in the early design stages. The tool aims to provide the consultante (et. al) to make informed decisions, and make sure these decisions are smart 50 years in the future. 
 
-**Q: What is the business and societal value of your tool?**
+**Q: What is the business and societal value of your tool?**<br>
 From a business perspective, our tool aims to provide the consultant long term consequenses of downstream decision making.
 From a societal perspective, our tool aims to make sure that the building area provides optimal usage for the occupance. This is important because, optimal usage may enhance the effectivness of the occupance which might releaf society from a finincial burden TBD*.  
-**Q: Produce a BPMN diagram to summarize your idea. Save this in a folder in your repository along with an SVG of the diagram and embed the SVG in the Markdown as an image.**
+
+**Q: Produce a BPMN diagram to summarize your idea. Save this in a folder in your repository along with an SVG of the diagram and embed the SVG in the Markdown as an image.**<br>
+
 
 ## A2f
 
-**Q: Identify what information you need to extract from the model.**
+**Q: Identify what information you need to extract from the model.**<br>
 To make our tool function, we need to extract neccessary element types for an exterior load bearing wall; Its material layers, orientation of the wall, the dimensions of the wall, GWP (if available)
-**Q: Where is this in IFC?**
+
+**Q: Where is this in IFC?**<br>
 - IFCWall
 - IFCMaterial
 - IFCWindow
 - IFCElement
-**Q: Is it in the model?**
+<br>
+
+**Q: Is it in the model?**<br>
 To our knowledge, this data is available in the IFC.
-**Q: Do you know how to get it in ifcOpenShell?**
+
+**Q: Do you know how to get it in ifcOpenShell?**<br>
 @Fredrik 
-**Q: What will you need to learn to do this?**
+
+**Q: What will you need to learn to do this?**<br>
 We need to learn how to extract relevant data using IfcOpenShell.
+
 ## A2g
 
-**Q: What software license will you choose for your project?**
-Visual Studio Code(?)
+**Q: What software license will you choose for your project?**<br>
+Visual Studio Code(?)<br>
 License for Blender(?)
