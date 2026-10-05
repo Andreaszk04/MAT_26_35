@@ -64,25 +64,32 @@ A report there is close to this studys case could be 2438. 2438 aims to match re
 ## A2e
 
 **Q: Describe in words your idea for your own OpenBIM ifcOpenShell Tool in Python.**
+The idea is to make a tool that is able to assess the consequenses of the downstream material choices in the next 50 years. This will be based on performance variables; loads, insulation (heat transfer), maintenance, temperature change due to climate change. On the bases of these performance variables, the wall will be assessed on; GWP50, LCC.
+
+This tool will be utilized best in the early design stages. The tool aims to provide the consultante (et. al) to make informed decisions, and make sure these decisions are smart 50 years in the future. 
 
 **Q: What is the business and societal value of your tool?**
-
+From a business perspective, our tool aims to provide the consultant long term consequenses of downstream decision making.
+From a societal perspective, our tool aims to make sure that the building area provides optimal usage for the occupance. This is important because, optimal usage may enhance the effectivness of the occupance which might releaf society from a finincial burden TBD*.  
 **Q: Produce a BPMN diagram to summarize your idea. Save this in a folder in your repository along with an SVG of the diagram and embed the SVG in the Markdown as an image.**
 
 ## A2f
 
 **Q: Identify what information you need to extract from the model.**
-
+To make our tool function, we need to extract neccessary element types for an exterior load bearing wall; Its material layers, orientation of the wall, the dimensions of the wall, GWP (if available)
 **Q: Where is this in IFC?**
-
+- IFCWall
+- IFCMaterial
+- IFCWindow
+- IFCElement
 **Q: Is it in the model?**
-
+To our knowledge, this data is available in the IFC.
 **Q: Do you know how to get it in ifcOpenShell?**
-
+@Fredrik 
 **Q: What will you need to learn to do this?**
-
+We need to learn how to extract relevant data using IfcOpenShell.
 ## A2g
 
 **Q: What software license will you choose for your project?**
-
-Visual Studio Code
+Visual Studio Code(?)
+License for Blender(?)
