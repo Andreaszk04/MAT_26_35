@@ -29,18 +29,20 @@ This facilitates a more centralized and properly process of selecting materials.
 
 **Q: Write a short description of the claim you wish to check. It could be the same as the previous assignment, or if this is too simple you could identify a new claim from the report to check in this assignment.**
 
-To check what are the emissions. Extracting GWP and u vlaue from the walls/ other elements of the blender model. **TO BE SPECIFIED**
+To check what are the emissions. Extracting GWP and u vlaue from the walls/other elements of the blender model. **TO BE SPECIFIED**
 
 **Q: Justify your selection of your claim**
 
 
 
 ## A2c
-# How you would check this claim?
-Firstly, it would be wise to test whether the relevant data about the walls, slaps etc. are avaliable in the IFC model in order to check them. Afterwards, it would like to check this claim by using a previous groups tool, that seems capable to asses building materials and properties and add aditional atributes to the tool. 
-# When would this claim need to be checked?
-Information about materials are usually most valuable in the design phaases of the building. In the case of a renovation, this information would be most valuable during the assesment of the building construction, in regards to how much CO2 it would take to replace an element entirelyg or renovate it. However, it is good practices to keep check on the materials overall GWP (Global Warmning Potential). 
-# What information does this claim rely on?
+**Q: How you would check this claim?**
+Firstly, it would be wise to test whether the relevant data about the walls, slabs etc. are avaliable in the IFC model in order to check them. Afterwards, it would like to check this claim by using a previous groups tool, that seems capable to asses building materials and properties and add aditional atributes to the tool. 
+
+**Q: When would this claim need to be checked?**
+Information about materials are usually most valuable in the design phases of the building. In the case of a renovation, this information would be most valuable during the assesment of the building construction, in regards to how much CO2 it would take to replace an element entirelyg or renovate it. However, it is good practices to keep check on the materials overall GWP (Global Warmning Potential). 
+
+**Q: What information does this claim rely on?**
 Claims in the reports and available model data
 # What phase? planning, design, build or operation.
 Planning and design phases are the most crucial phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. Because of this, theese stages can also be be overwelming for the consultatns, as they need to make a lot of decisions in due time. This can lead to decisions made based of off 'BAU' (Buisness as usual) decisions, that might not be reflect the actual needs of the occupants or the building owners needs. 
@@ -48,8 +50,10 @@ Planning and design phases are the most crucial phases in terms of choosing mate
 The BIM Purpose of this study is to asses a building element to make it 'the best' it possible can be across a variety of parameters. The purpose is then to give the engineer the tools to asses a renovation case with focus on optimizing a component. 
 # Review use case examples - do any of these help?, What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.
 A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
-# Produce a BPMN-diagram for your chosen use case. Link to this so we can see it in your markdown file. To do this you will have to save it as an SVG, please also save the BPMN with it. You can use this online tool to create BPMN-diagrams.
+
+**Q: Produce a BPMN-diagram for your chosen use case. Link to this so we can see it in your markdown file. To do this you will have to save it as an SVG, please also save the BPMN with it. You can use this online tool to create BPMN-diagrams.**
 ![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/diagram%20(1).svg)
+
 ## A2d
 
 **Q: From the ‘whole use case’ identify where a new script / function / tool is needed. Highlight this in your BPMN diagram. Show this clearly in a new SVG diagram.**
@@ -77,3 +81,5 @@ A report there is close to this studys case could be 2438. 2438 aims to match re
 ## A2g
 
 **Q: What software license will you choose for your project?**
+
+Visual Studio Code
