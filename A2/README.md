@@ -43,7 +43,7 @@ Information about materials are usually most valuable in the design phaases of t
 # What information does this claim rely on?
 Claims in the reports and available model data
 # What phase? planning, design, build or operation.
-Planning and design phases are the most crucial phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. 
+Planning and design phases are the most crucial phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. Because of this, theese stages can also be be overwelming for the consultatns, as they need to make a lot of decisions in due time. This can lead to decisions made based of off 'BAU' (Buisness as usual) decisions, that might not be reflect the actual needs of the occupants or the building owners needs. 
 # What BIM purpose is required? Gather, generate, analyse, communicate or realise?
 The BIM Purpose of this study is to asses a building element to make it 'the best' it possible can be across a variety of parameters. The purpose is then to give the engineer the tools to asses a renovation case with focus on optimizing a component. 
 # Review use case examples - do any of these help?, What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.
