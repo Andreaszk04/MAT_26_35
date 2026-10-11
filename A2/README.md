@@ -12,7 +12,7 @@
 
 **Q: Select which building(s) to focus on for your focus area**
 
-The team chose reports:<br>
+The team chose teh reports for building: 2602, 2603 & 2608:<br>
 
 Building 2602:<br>
 *“The project will also highlight areas of opportunities where sustainability performance has potential to be improved, while keeping potential considerations of regulatory requirements and environmental trade- offs in mind. Economic sustainability will be evaluated through a life cycle costing (LCC) analysis”* (Section 6, page 29)<br>
@@ -24,31 +24,31 @@ Building 2608:<br>
 *“For the new materials in the renovation project the materials consultants have will make a material catalog highlighting the GWP-impact of each of the options. This will be presented for the other roles and the goal is to pick the new materials with the lowest GWP-output while still satisfying each of the other roles.”* (Section 5.3, page 38)<br>
 
 **Q: Identify a ‘claim’ / issue / fact to check from one of those reports.**<br>
-Creating LCA assessments combined with other factors such as financial and energy implications.<br>
+Report 2608 claims that new materials can be selected by the lowest GWP by LCA assessments combined with other factors such as financial and energy implications.<br>
 This facilitates a more centralized and properly process of selecting materials. 
 
-**Q: Write a short description of the claim you wish to check. It could be the same as the previous assignment, or if this is too simple you could identify a new claim from the report to check in this assignment.**<br>
-To check what are the emissions. Extracting GWP and u vlaue from the walls/other elements of the blender model. **TO BE SPECIFIED**
+**Q: Write a short description of the claim you wish to check.**<br>
+We want to check whether the lowest-GWP material choice for an element actually remains the best choice once thermal performance (U-value) and life cycle cost are considered. To do this, we extract the material layers, GWP and U-value of the exterior walls (and other elements, if available) from the Blender/IFC model and compare the alternatives on all parameters at once.
 
 **Q: Justify your selection of your claim**<br>
-
+Selecting materials on GWP alone is simple, but it can have deceiving trade-offs: a low-GWP wall may have a poor U-value, which increases operational energy use, or a higher maintenance and replacement cost over time. The claim also seems 'checkable'. It of course depends on the data available can be extracted from the IFC model (layers, thickness, U-value, e.g.) and linked to EPD data. Finally, the claim matters most in renovation, where the choice between replacing and renovating an element has large consequences.
 
 
 ## A2c
 **Q: How you would check this claim?**<br>
-Firstly, it would be wise to test whether the relevant data about the walls, slabs etc. are avaliable in the IFC model in order to check them. Afterwards, it would be wise to check this claim by using a previous groups tool, that seems capable to asses building materials and properties and add aditional atributes to the tool. 
+Firstly, it would be wise to test whether the relevant data about the walls, slabs etc. are avaliable in the IFC model. Afterwards, we reuse a previous group's tool that already assesses building materials and properties, adding the attributes we need (U-value, cost, lifetime). Third, we link each material layer to EPD data to calculate GWP and compare the result across different wall typologies.
 
 **Q: When would this claim need to be checked?**<br>
-Information about materials are usually most valuable in the design phases of the building. In the case of a renovation, this information would be most valuable during the assesment of the building construction, in regards to how much CO2 it would take to replace an element entirelyg or renovate it. However, it is good practices to keep check on the materials overall GWP (Global Warmning Potential). 
+Information about materials are usually most valuable in the design phases of the building. In the case of a renovation, this information would be most valuable during the assesment of the building construction, in regards to how much CO2 it would take to replace an element entirely or renovate it. It is also good practice to follow the GWP of materials throughout the project as the design changes.
 
 **Q: What information does this claim rely on?**<br>
-Claims in the reports and available model data
+The claims in the reports and the data available in the model (IFC elements, material layers, property sets), together with EPD and cost data.
 
 **Q: What phase? planning, design, build or operation.**<br>
 Planning and design phases are the most crucial phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. Because of this, theese stages can also be be overwelming for the consultatns, as they need to make a lot of decisions in due time. This can lead to decisions made based of off 'BAU' (Buisness as usual) decisions, that might not be reflect the actual needs of the occupants or the building owners needs. 
 
 **Q: What BIM purpose is required? Gather, generate, analyse, communicate or realise?**<br>
-The BIM Purpose of this study is to asses a building element to make it 'the best' it possible can be across a variety of parameters. The purpose is then to give the engineer the tools to asses a renovation case with focus on optimizing a component. 
+Primarily analyse: the tool hopes to evaluate building elements across different parameters (GWP, U-value, cost). It also supports communicate, as the results are presented to the consultant as a basis for decision making.
 
 **Q: Review use case examples - do any of these help?, What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.**<br>
 A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
@@ -73,7 +73,7 @@ From a business perspective, our tool aims to provide the consultant long term c
 From a societal perspective, our tool aims to make sure that the building area provides optimal usage for the occupance. This is important because, optimal usage may enhance the effectivness of the occupance which might releaf society from a finincial burden TBD*.  
 
 **Q: Produce a BPMN diagram to summarize your idea. Save this in a folder in your repository along with an SVG of the diagram and embed the SVG in the Markdown as an image.**<br>
-
+![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/diagram%20(4).svg) 
 
 ## A2f
 
