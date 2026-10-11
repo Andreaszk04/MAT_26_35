@@ -31,21 +31,21 @@ This facilitates a more centralized and properly process of selecting materials.
 We want to check whether the lowest-GWP material choice for an element actually remains the best choice once thermal performance (U-value) and life cycle cost are considered. To do this, we extract the material layers, GWP and U-value of the exterior walls (and other elements, if available) from the Blender/IFC model and compare the alternatives on all parameters at once.
 
 **Q: Justify your selection of your claim**<br>
-Selecting materials on GWP alone is simple, but it can have deceiving trade-offs: a low-GWP wall may have a poor U-value, which increases operational energy use, or a higher maintenance and replacement cost over time. The claim also seems 'checkable'. It of course depends on the data available can be extracted from the IFC model (layers, thickness, U-value, e.g.) and linked to EPD data. Finally, the claim matters most in renovation, where the choice between replacing and renovating an element has large consequences.
+Selecting materials on GWP alone is simple, but it can have negative trade-offs: a low GWP wall may have a poor U-value, which increases operational energy use, or a higher maintenance and replacement cost over time. The claim also seems 'checkable'. It of course depends on the data available can be extracted from the IFC model (layers, thickness, U-value, e.g.) and linked to EPD data. Finally, the claim matters most in renovation, where the choice between replacing and renovating an element has large consequences.
 
 
 ## A2c
 **Q: How you would check this claim?**<br>
-Firstly, it would be wise to test whether the relevant data about the walls, slabs etc. are avaliable in the IFC model. Afterwards, we reuse a previous group's tool that already assesses building materials and properties, adding the attributes we need (U-value, cost, lifetime). Third, we link each material layer to EPD data to calculate GWP and compare the result across different wall typologies.
+Firstly, it would be wise to test whether the relevant data about the walls are avaliable in the IFC model. Afterwards, we reuse a previous group's tool that already assesses building materials and properties, adding the attributes we need (U-value, cost, lifetime). Third, we link each material layer to EPD data to calculate GWP and compare the result across different wall typologies.
 
 **Q: When would this claim need to be checked?**<br>
-Information about materials are usually most valuable in the design phases of the building. In the case of a renovation, this information would be most valuable during the assesment of the building construction, in regards to how much CO2 it would take to replace an element entirely or renovate it. It is also good practice to follow the GWP of materials throughout the project as the design changes.
+Informations about the materials are usually most valuable in the design phases of the building. In the case of a renovation, this information would be most valuable during the assesment of the current buildings construction principal, in regards to how much CO2 it would take to replace an element entirely or renovate it. It is also good practice to follow the GWP of materials throughout the project as the design changes.
 
 **Q: What information does this claim rely on?**<br>
-The claims in the reports and the data available in the model (IFC elements, material layers, property sets), together with EPD and cost data.
+The claims in the reports and the data available in the model (IFC elements, material layers, etc.), together with EPD and cost data (Molio Sigma Browser).
 
 **Q: What phase? planning, design, build or operation.**<br>
-Planning and design phases are the most important phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. Because of this, these stages can also be be overwelming for the consultatns, as they need to make a lot of decisions in due time. This can lead to decisions made based of off 'BAU' (Buisness as usual) decisions, that might not be reflect the actual needs of the occupants or the building owner. 
+Planning and design phases are the most important phases in terms of choosing materials - generally. These stages have the biggest flexibility in regards to the material choices. Because of this, these stages can also be be overwelming for the consultatns, as they need to make a lot of decisions in due time. This can lead to decisions made based of off 'BAU' (Buisness as usual) decisions, that might not be reflect the actual needs of the occupants or the building owner. 
 
 **Q: What BIM purpose is required? Gather, generate, analyse, communicate or realise?**<br>
 Primarily analyse: the tool hopes to evaluate building elements across different parameters (GWP, U-value, cost). It also supports communicate, as the results are presented to the consultant as a basis for decision making.
@@ -57,9 +57,8 @@ A report there is close to this studys case could be 2438. 2438 aims to match re
 ![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/A2/diagram%20(5).svg)
 
 ## A2d
-
 **Q: From the ‘whole use case’ identify where a new script / function / tool is needed. Highlight this in your BPMN diagram. Show this clearly in a new SVG diagram.**<br>
-
+![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/A2/diagram%20(6).svg)
 
 ## A2e
 
