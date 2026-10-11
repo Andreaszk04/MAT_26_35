@@ -54,11 +54,11 @@ Primarily analyse: the tool hopes to evaluate building elements across different
 A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
 
 **Q: Produce a BPMN-diagram for your chosen use case.**<br>
-![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/A2/diagram%20(5).svg)
+![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/A2/Diagrams/diagram%20(5).svg)
 
 ## A2d
 **Q: From the ‘whole use case’ identify where a new script / function / tool is needed. Highlight this in your BPMN diagram.**<br>
-![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/A2/diagram%20(6).svg)
+![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/A2/Diagrams/diagram%20(6).svg)
 
 ## A2e
 
@@ -73,7 +73,7 @@ Business perspectiv: The consultant gets a fast overview of the long-term conseq
 Societal perspectiv: Lower embodied and operational emissions across the life cycle, fewer poor material choices that must be corrected later, and buildings that perform well for their users over the long term.
 
 **Q: Produce a BPMN diagram to summarize your idea. Save this in a folder in your repository along with an SVG of the diagram and embed the SVG in the Markdown as an image.**<br>
-![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/diagram%20(4).svg) 
+![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/A2/Diagrams/diagram%20(4).svg)
 
 ## A2f
 
