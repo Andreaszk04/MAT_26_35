@@ -45,12 +45,12 @@ Information about materials are usually most valuable in the design phases of th
 The claims in the reports and the data available in the model (IFC elements, material layers, property sets), together with EPD and cost data.
 
 **Q: What phase? planning, design, build or operation.**<br>
-Planning and design phases are the most crucial phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. Because of this, theese stages can also be be overwelming for the consultatns, as they need to make a lot of decisions in due time. This can lead to decisions made based of off 'BAU' (Buisness as usual) decisions, that might not be reflect the actual needs of the occupants or the building owners needs. 
+Planning and design phases are the most important phases in terms of choosing materials. These stages has the biggest flexibility in regards to the material choices. Because of this, these stages can also be be overwelming for the consultatns, as they need to make a lot of decisions in due time. This can lead to decisions made based of off 'BAU' (Buisness as usual) decisions, that might not be reflect the actual needs of the occupants or the building owner. 
 
 **Q: What BIM purpose is required? Gather, generate, analyse, communicate or realise?**<br>
 Primarily analyse: the tool hopes to evaluate building elements across different parameters (GWP, U-value, cost). It also supports communicate, as the results are presented to the consultant as a basis for decision making.
 
-**Q: Review use case examples - do any of these help?, What BIM use case is this closest to? If you cannot find one from the examples, you can make a new one.**<br>
+**Q: Review use case examples - do any of these help?, What BIM use case is this closest to?**<br>
 A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
 
 **Q: Produce a BPMN-diagram for your chosen use case. Link to this so we can see it in your markdown file. To do this you will have to save it as an SVG, please also save the BPMN with it. You can use this online tool to create BPMN-diagrams.**<br>
@@ -64,13 +64,14 @@ A report there is close to this studys case could be 2438. 2438 aims to match re
 ## A2e
 
 **Q: Describe in words your idea for your own OpenBIM ifcOpenShell Tool in Python.**<br>
-The idea is to make a tool that is able to assess the consequenses of the downstream material choices in the next 50 years. This will be based on performance variables; loads, insulation (heat transfer), maintenance, temperature change due to climate change. On the bases of these performance variables, the wall will be assessed on; GWP50, LCC.
+The idea is to make a tool that is able to assess the consequenses of the downstream material choices for an exterior wall over a 50 year period. The tool will asses the wall's material layers and dimensions from the IFC model, links them to EPD data, and calculates GWP over 50 years and life cycle cost for each alternative. The tool will then compare different wall typologies and compare them on the bases of predetermined performance variables such as loads, insulation (heat transfer), maintenance and temperature change due to climate change are used to compare the alternatives.
 
-This tool will be utilized best in the early design stages. The tool aims to provide the consultante (et. al) to make informed decisions, and make sure these decisions are smart 50 years in the future. 
+This tool will be utilized best in the early design stages. The tool aims to provide the consultants to make informed decisions. 
 
 **Q: What is the business and societal value of your tool?**<br>
-From a business perspective, our tool aims to provide the consultant long term consequenses of downstream decision making.
-From a societal perspective, our tool aims to make sure that the building area provides optimal usage for the occupance. This is important because, optimal usage may enhance the effectivness of the occupance which might releaf society from a finincial burden TBD*.  
+Business perspectiv: The consultant gets a fast overview of the long-term consequences of material choices, so decisions are based on data instead of business as usual. This reduces the risk of changes later in the project and supports documentation for sustainability requirements.
+
+Societal perspectiv: Lower embodied and operational emissions across the life cycle, fewer poor material choices that must be corrected later, and buildings that perform well for their users over the long term.
 
 **Q: Produce a BPMN diagram to summarize your idea. Save this in a folder in your repository along with an SVG of the diagram and embed the SVG in the Markdown as an image.**<br>
 ![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/diagram%20(4).svg) 
@@ -78,23 +79,23 @@ From a societal perspective, our tool aims to make sure that the building area p
 ## A2f
 
 **Q: Identify what information you need to extract from the model.**<br>
-To make our tool function, we need to extract neccessary element types for an exterior load bearing wall; Its material layers, orientation of the wall, the dimensions of the wall, GWP (if available)
+To make our tool function, we need to extract information about the exterior walls. For an exterior load-bearing wall: the material layers and their thicknesses, the orientation of the wall, its dimensions (length, height, area), the U-value, and GWP if available. Openings (windows) are needed to calculate the net wall area.
 
 **Q: Where is this in IFC?**<br>
 - IFCWall
 - IFCMaterial
 - IFCWindow
-- IFCElement
+- IFCElementQuantity
 <br>
 
 **Q: Is it in the model?**<br>
-To our knowledge, this data is available in the IFC.
+To our knowledge, this data is mostly available in the IFC. GWP is rarely stored in IFC models, so we expect to link GWP from external EPD data. 
 
 **Q: Do you know how to get it in ifcOpenShell?**<br>
-@Fredrik 
+Partly. We expect to use ifcopenshell.open(), model.by_type("IfcWall"), and ifcopenshell.util.element.get_material() and get_psets().
 
 **Q: What will you need to learn to do this?**<br>
-We need to learn how to extract relevant data using IfcOpenShell.
+We need to learn how to extract relevant data using IfcOpenShell. We also need to lear how to how to match material names to EPD entries, and how to structure the calculation for GWP and LCC over 50 years.
 
 ## A2g
 
