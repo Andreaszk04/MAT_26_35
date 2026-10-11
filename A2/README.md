@@ -54,7 +54,7 @@ Primarily analyse: the tool hopes to evaluate building elements across different
 A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
 
 **Q: Produce a BPMN-diagram for your chosen use case. Link to this so we can see it in your markdown file. To do this you will have to save it as an SVG, please also save the BPMN with it. You can use this online tool to create BPMN-diagrams.**<br>
-![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/diagram%20(1).svg)
+![Alt text](https://github.com/Andreaszk04/MAT_26_35/blob/main/A2/diagram%20(5).svg)
 
 ## A2d
 
