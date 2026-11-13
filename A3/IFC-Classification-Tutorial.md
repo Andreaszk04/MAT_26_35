@@ -28,7 +28,7 @@ Fundamentally IFC is both a data structure and format. Thus IFC stands as an ess
 
 ### IFC definitions
 
-![IFC definitions](images/image1.png)
+![IFC definitions](IFC%20definitions.png)
 
 The IFC data structure contains different definitions, that differ from each other.
 
@@ -50,7 +50,7 @@ The IFC data structure contains different definitions, that differ from each oth
 
 # openBIM workflows using IFC
 
-![openBIM workflows](images/image2.png)
+![openBIM workflows](openBIM%20workflows.png)
 
 Since all entities in a project are quantified as data in the IFC file, it facilitates different openBIM processes, such as:
 
