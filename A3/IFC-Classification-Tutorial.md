@@ -8,6 +8,8 @@
 
 **Focus areas:** Gives a basic understanding of IFC and openBIM for all focus areas.
 
+**Other format:** See "IFC-Tutorial-Notebook.ipynb" for a walkthough of the common IfcOpenShell commands.
+
 # Learning objectives
 
 - Being able to comprehend the IFC data structure
