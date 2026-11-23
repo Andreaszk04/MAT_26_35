@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/1.0/ids.xsd">
+    <info>
+        <title>A4 Group 35 - Exterior wall insulation tool</title>
+        <version>1.0</version>
+        <description>Checks that a model contains the information needed by wall_insulation_tool.py</description>
+        <purpose>Exterior wall layers, U-value and quantities for GWP / insulation comparison</purpose>
+    </info>
+    <specifications>
+        <specification name="Exterior walls - layers, U-value, quantities" ifcVersion="IFC2X3 IFC4 IFC4X3_ADD2" description="Every external wall needs a layered material, a U-value and quantities for area">
+            <applicability minOccurs="0" maxOccurs="unbounded">
+                <entity>
+                    <name>
+                        <simpleValue>IFCWALL</simpleValue>
+                    </name>
+                </entity>
+                <property dataType="IFCBOOLEAN">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>IsExternal</simpleValue>
+                    </baseName>
+                    <value>
+                        <simpleValue>TRUE</simpleValue>
+                    </value>
+                </property>
+            </applicability>
+            <requirements>
+                <property dataType="IFCTHERMALTRANSMITTANCEMEASURE" cardinality="required" instructions="U-value of the wall [W/m2K]">
+                    <propertySet>
+                        <simpleValue>Pset_WallCommon</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>ThermalTransmittance</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCVOLUMEMEASURE" cardinality="required" instructions="Used with Width to get net side area when NetSideArea is missing">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>NetVolume</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Wall thickness">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>Width</simpleValue>
+                    </baseName>
+                </property>
+                <property dataType="IFCAREAMEASURE" cardinality="optional" instructions="Preferred source of wall area">
+                    <propertySet>
+                        <simpleValue>Qto_WallBaseQuantities</simpleValue>
+                    </propertySet>
+                    <baseName>
+                        <simpleValue>NetSideArea</simpleValue>
+                    </baseName>
+                </property>
+                <material cardinality="required" instructions="Wall must have an IfcMaterialLayerSet(Usage) with named materials" />
+            </requirements>
+        </specification>
+    </specifications>
+</ids>

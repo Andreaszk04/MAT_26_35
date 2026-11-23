@@ -1,0 +1,53 @@
+{
+  "_readme": "Assumptions used by the tool. Edit freely. Material rules are tried top-down; 'match' is a case-insensitive regular expression on the IFC material name. 'lambda' is the design thermal conductivity [W/mK]; air layers use a fixed thermal resistance 'R' [m2K/W]. 'table7_id' is the 'Sorterings ID' in BR18 Table 7 (input/Tabel-7-2025.xlsx). Lambda values are typical design values and should be checked against the product data.",
+
+  "surface_resistance": {
+    "Rsi": 0.13,
+    "Rse": 0.04,
+    "_source": "DS/EN ISO 6946, horizontal heat flow"
+  },
+
+  "u_value_requirement": 0.30,
+  "_u_value_requirement_note": "BR18 component requirement for exterior walls in new buildings (Bilag 2, tabel 1). For renovation of exterior walls BR18 Bilag 2, tabel 2 states 0.18. Verify for your project.",
+  "u_value_tolerance": 0.10,
+
+  "materials": [
+    {"match": "\\bair\\b|luft|cavity|hulrum", "R": 0.18, "table7_id": null,
+     "_note": "Unventilated air layer >= 25 mm, ISO 6946 table 8"},
+    {"match": "batt insulation", "insulation": true, "lambda": 0.037, "table7_id": "#D1535",
+     "_note": "Revit layer 'Structure, Wood Joist/Rafter Layer, Batt Insulation' treated as mineral wool batts kl. 37 - timber studs are not included"},
+    {"match": "rigid insulation", "insulation": true, "lambda": 0.034, "table7_id": "#D1536",
+     "_note": "Mineraluld, hard isolering, kl. 34"},
+    {"match": "hemp|hamp", "insulation": true, "lambda": 0.040, "table7_id": "#D1620"},
+    {"match": "wood ?fib|træfiber", "insulation": true, "lambda": 0.038, "table7_id": "#D1627"},
+    {"match": "\\beps\\b|polystyren", "insulation": true, "lambda": 0.034, "table7_id": "#D1557"},
+    {"match": "\\bpir\\b|polyiso", "insulation": true, "lambda": 0.022, "table7_id": "#D1566"},
+    {"match": "insulation|isolering|mineral ?wool|mineraluld|stone ?wool|stenuld|rockwool|glass ?wool|glasuld",
+     "insulation": true, "lambda": 0.037, "table7_id": "#D1535"},
+    {"match": "brick|tegl|mursten", "lambda": 0.60, "table7_id": "#D1508",
+     "_note": "Teglsten, gule (model material: Brick, Common (yellow))"},
+    {"match": "concrete|beton", "lambda": 2.0, "table7_id": "#B1477",
+     "_note": "Fabriksbeton C30/37"},
+    {"match": "plaster|puds", "lambda": 1.0, "table7_id": "#D1575"},
+    {"match": "knauf|silent board|acoustic board", "lambda": 0.25, "table7_id": "#D1519"},
+    {"match": "gypsum|gips", "lambda": 0.25, "table7_id": "#D1515",
+     "_note": "Gipsplade, standard - Table 7 unit is m2 (one board), so thickness is not scaled"},
+    {"match": "vapou?r retarder|vapou?r barrier|dampspærre", "lambda": null, "table7_id": "#G1125"},
+    {"match": "damp-?proof", "lambda": null, "table7_id": "#G1139"},
+    {"match": "wood|timber|træ", "lambda": 0.13, "table7_id": "#B1489"},
+    {"match": "steel|metal|stål", "lambda": 50.0, "table7_id": null,
+     "_note": "Thin metal finish/furring: GWP not calculated (layer volume is not steel volume)"}
+  ],
+
+  "insulation_alternatives": [
+    {"name": "Hemp", "lambda": 0.040, "table7_id": "#D1620", "note": "Isoleringsplade, hamp; lambda typical for hemp batts"},
+    {"name": "Wood fibre (board)", "lambda": 0.038, "table7_id": "#D1627", "note": "lambda typical for flexible wood fibre"},
+    {"name": "Grass fibre", "lambda": 0.040, "table7_id": "#D1622", "note": "lambda typical value"},
+    {"name": "Cork", "lambda": 0.040, "table7_id": "#D1621", "note": "lambda typical for expanded cork board"},
+    {"name": "Paper wool (cellulose)", "lambda": 0.039, "table7_id": "#D1623", "note": "lambda typical value; Table 7 unit kg"},
+    {"name": "Mineral wool batts kl. 37", "lambda": 0.037, "table7_id": "#D1541", "note": "lambda given by class"},
+    {"name": "Mineral wool batts kl. 34", "lambda": 0.034, "table7_id": "#D1540", "note": "lambda given by class"},
+    {"name": "EPS grey 30 kPa", "lambda": 0.031, "table7_id": "#D1559", "note": "lambda typical for grey EPS"},
+    {"name": "PIR", "lambda": 0.022, "table7_id": "#D1566", "note": "lambda typical value"}
+  ]
+}
