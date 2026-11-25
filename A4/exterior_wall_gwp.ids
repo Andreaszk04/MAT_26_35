@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ids xmlns="http://standards.buildingsmart.org/IDS" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://standards.buildingsmart.org/IDS http://standards.buildingsmart.org/IDS/1.0/ids.xsd">
+  <info>
+    <title>A4 - Exterior wall GWP tool</title>
+    <version>1.0</version>
+    <description>Checks that an IFC model contains the information the exterior wall GWP tool (exterior_wall_gwp) needs.</description>
+    <purpose>Exterior walls must be identifiable, have a layered material with named materials and thicknesses, and have length and height so the volume per layer can be calculated (V = t x L x H).</purpose>
+  </info>
+  <specifications>
+    <specification name="All walls state whether they are external" ifcVersion="IFC2X3 IFC4" description="CAPT only analyses walls where Pset_WallCommon.IsExternal is TRUE. A wall without this property is silently left out.">
+      <applicability minOccurs="0" maxOccurs="unbounded">
+        <entity>
+          <name><simpleValue>IFCWALL</simpleValue></name>
+        </entity>
+      </applicability>
+      <requirements>
+        <property dataType="IFCBOOLEAN" cardinality="required" instructions="Set IsExternal to TRUE for exterior walls and FALSE for interior walls.">
+          <propertySet><simpleValue>Pset_WallCommon</simpleValue></propertySet>
+          <baseName><simpleValue>IsExternal</simpleValue></baseName>
+        </property>
+      </requirements>
+    </specification>
+    <specification name="Exterior walls have a material" ifcVersion="IFC2X3 IFC4" description="CAPT needs an IfcMaterialLayerSet (one layer per material with LayerThickness) or a single IfcMaterial. Other material definitions are skipped.">
+      <applicability minOccurs="0" maxOccurs="unbounded">
+        <entity>
+          <name><simpleValue>IFCWALL</simpleValue></name>
+        </entity>
+        <property dataType="IFCBOOLEAN">
+          <propertySet><simpleValue>Pset_WallCommon</simpleValue></propertySet>
+          <baseName><simpleValue>IsExternal</simpleValue></baseName>
+          <value><simpleValue>TRUE</simpleValue></value>
+        </property>
+      </applicability>
+      <requirements>
+        <material cardinality="required" instructions="Assign a layered material (IfcMaterialLayerSet) with named materials, e.g. 'Brick, Common', 'Rigid insulation'. CONN classifies the layers by these names." />
+      </requirements>
+    </specification>
+    <specification name="Exterior walls have length and height" ifcVersion="IFC2X3 IFC4" description="CAPT calculates layer volume as thickness x Length x Height. If Length or Height is missing, the tool falls back to the wall geometry, which is slower and less exact.">
+      <applicability minOccurs="0" maxOccurs="unbounded">
+        <entity>
+          <name><simpleValue>IFCWALL</simpleValue></name>
+        </entity>
+        <property dataType="IFCBOOLEAN">
+          <propertySet><simpleValue>Pset_WallCommon</simpleValue></propertySet>
+          <baseName><simpleValue>IsExternal</simpleValue></baseName>
+          <value><simpleValue>TRUE</simpleValue></value>
+        </property>
+      </applicability>
+      <requirements>
+        <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Export base quantities (e.g. Revit: 'Export base quantities').">
+          <propertySet><simpleValue>Qto_WallBaseQuantities</simpleValue></propertySet>
+          <baseName><simpleValue>Length</simpleValue></baseName>
+        </property>
+        <property dataType="IFCLENGTHMEASURE" cardinality="required" instructions="Export base quantities (e.g. Revit: 'Export base quantities').">
+          <propertySet><simpleValue>Qto_WallBaseQuantities</simpleValue></propertySet>
+          <baseName><simpleValue>Height</simpleValue></baseName>
+        </property>
+      </requirements>
+    </specification>
+  </specifications>
+</ids>

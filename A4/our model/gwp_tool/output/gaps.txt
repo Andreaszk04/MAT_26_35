@@ -1,5 +1,0 @@
-Exterior wall: 'Metal Furring' modelled 50 mm - counted as 0.7 mm solid steel (assumption, see material_data.json)
-Exterior wall: 'Steel, Paint Finish, Dark Gray, Matte' modelled 18 mm - counted as 1.0 mm solid steel (assumption, see material_data.json)
-Exterior wall: 'Steel, Paint Finish, Dark Gray, Matte' modelled 40 mm - counted as 1.0 mm solid steel (assumption, see material_data.json)
-Exterior wall: material 'CD2' not recognised by CONN_MATERIAL
-Exterior wall: material 'Default Wall' not recognised by CONN_MATERIAL
