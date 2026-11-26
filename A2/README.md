@@ -73,7 +73,7 @@ Business perspectiv: The consultant gets a fast overview of the long-term conseq
 Societal perspectiv: Lower embodied and operational emissions across the life cycle, fewer poor material choices that must be corrected later, and buildings that perform well for their users over the long term.
 
 **Q: Produce a BPMN diagram to summarize your idea. Save this in a folder in your repository along with an SVG of the diagram and embed the SVG in the Markdown as an image.**<br>
-![A2e](diagram%20(4).svg)
+![A2e](A2e_exterior_wall_gwp_tool.svg)
 
 ## A2f
 
