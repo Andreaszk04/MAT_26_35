@@ -54,7 +54,7 @@ Primarily analyse: the tool hopes to evaluate building elements across different
 A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of a specific wall. 
 
 **Q: Produce a BPMN-diagram for your chosen use case.**<br>
-![A2c](diagram%20(5).svg)
+![A2c](diagram.svg)
 
 ## A2d
 **Q: From the ‘whole use case’ identify where a new script / function / tool is needed. Highlight this in your BPMN diagram.**<br>
