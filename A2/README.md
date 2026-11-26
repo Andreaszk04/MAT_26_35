@@ -58,7 +58,7 @@ A report there is close to this studys case could be 2438. 2438 aims to match re
 
 ## A2d
 **Q: From the ‘whole use case’ identify where a new script / function / tool is needed. Highlight this in your BPMN diagram.**<br>
-![A2d](diagram%20(6).svg)
+![A2d](diagram_highlighted.svg)
 
 ## A2e
 
