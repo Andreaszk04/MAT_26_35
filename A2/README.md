@@ -12,7 +12,7 @@
 
 **Q: Select which building(s) to focus on for your focus area**
 
-The team chose teh reports for building: 2602, 2603 & 2608:<br>
+The team choose the reports for building: 2602, 2603 & 2608:<br>
 
 Building 2602:<br>
 *“The project will also highlight areas of opportunities where sustainability performance has potential to be improved, while keeping potential considerations of regulatory requirements and environmental trade- offs in mind. Economic sustainability will be evaluated through a life cycle costing (LCC) analysis”* (Section 6, page 29)<br>
@@ -28,15 +28,15 @@ Report 2608 claims that new materials can be selected by the lowest GWP by LCA a
 This facilitates a more centralized and properly process of selecting materials. 
 
 **Q: Write a short description of the claim you wish to check.**<br>
-We want to check whether the lowest-GWP material choice for an element actually remains the best choice once thermal performance (U-value) and life cycle cost are considered. To do this, we extract the material layers, GWP and U-value of the exterior walls (and other elements, if available) from the Blender/IFC model and compare the alternatives on all parameters at once.
+We want to check the environmental impact from the chosen materials in the IFC-models. To do this, we extract the material layers for the building envelope, and combine it with relevant data on environmental impact.
 
 **Q: Justify your selection of your claim**<br>
-Selecting materials on GWP alone is simple, but it can have negative trade-offs: a low GWP wall may have a poor U-value, which increases operational energy use, or a higher maintenance and replacement cost over time. The claim also seems 'checkable'. It of course depends on the data available can be extracted from the IFC model (layers, thickness, U-value, e.g.) and linked to EPD data. Finally, the claim matters most in renovation, where the choice between replacing and renovating an element has large consequences.
+Using the centralized IFC-model to calculate and evaluate the environmetal impact from the chosen materials, provides a more efficient and reliable evaluation process. Furthermore the claim also seems 'checkable'. It of course depends on the data available can be extracted from the IFC model (layers, thickness, materials, e.g.) and linked to EPD data. Finally, the claim matters most in renovation, where the choice between replacing and renovating an element has large consequences.
 
 
 ## A2c
 **Q: How you would check this claim?**<br>
-Firstly, it would be wise to test whether the relevant data about the walls are avaliable in the IFC model. Afterwards, we reuse a previous group's tool that already assesses building materials and properties, adding the attributes we need (U-value, cost, lifetime). Third, we link each material layer to EPD data to calculate GWP and compare the result across different wall typologies.
+Firstly, it would be wise to test whether the relevant data about the building envelope are avaliable in the IFC model. Afterwards, we want to extract and manage the data on the relevant materials to better manage the data. Then the data is filtered to properly generalize the different materials into types. These types are then combined with relevant generic EPD data from BR18. This facilitates a efficient way to calculate the GWP, and also provides a easy way to grasp and communicate the GWP.
 
 **Q: When would this claim need to be checked?**<br>
 Informations about the materials are usually most valuable in the design phases of the building. In the case of a renovation, this information would be most valuable during the assesment of the current buildings construction principal, in regards to how much CO2 it would take to replace an element entirely or renovate it. It is also good practice to follow the GWP of materials throughout the project as the design changes.
@@ -51,7 +51,7 @@ Planning and design phases are the most important phases in terms of choosing ma
 Primarily analyse: the tool hopes to evaluate building elements across different parameters (GWP, U-value, cost). It also supports communicate, as the results are presented to the consultant as a basis for decision making.
 
 **Q: Review use case examples - do any of these help?, What BIM use case is this closest to?**<br>
-A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of the building materials. 
+A report there is close to this studys case could be 2438. 2438 aims to match relevant IFC data with EPD data automatically. Their script extracts the IFC layers and match them with the relevant EPD data to sum the total GWP of a specific wall. 
 
 **Q: Produce a BPMN-diagram for your chosen use case.**<br>
 ![A2c](diagram%20(5).svg)
@@ -63,7 +63,7 @@ A report there is close to this studys case could be 2438. 2438 aims to match re
 ## A2e
 
 **Q: Describe in words your idea for your own OpenBIM ifcOpenShell Tool in Python.**<br>
-The idea is to make a tool that is able to assess the consequenses of the downstream material choices for an exterior wall over a 50 year period. The tool will asses the wall's material layers and dimensions from the IFC model, links them to EPD data, and calculates GWP over 50 years and life cycle cost for each alternative. The tool will then compare different wall typologies and compare them on the bases of predetermined performance variables such as loads, insulation (heat transfer), maintenance and temperature change due to climate change are used to compare the alternatives.
+The idea is to make a tool that is able to assess the consequenses of the downstream material choices for exterior walls over a 50 year period. The tool will asses the material layers and dimensions from the IFC model, links them to EPD data, and calculates GWP over 50 years. The tool will validate whether the results comply with regulation, and specify what material types that contributes the most to the environmental impact. Since all the exterior walls are analyzed, it then becomes easier to perceive and decide on the use of specific materials.
 
 This tool will be utilized best in the early design stages. The tool aims to provide the consultants to make informed decisions. 
 
@@ -78,12 +78,11 @@ Societal perspectiv: Lower embodied and operational emissions across the life cy
 ## A2f
 
 **Q: Identify what information you need to extract from the model.**<br>
-To make our tool function, we need to extract information about the exterior walls. For an exterior load-bearing wall: the material layers and their thicknesses, the orientation of the wall, its dimensions (length, height, area), the U-value, and GWP if available. Openings (windows) are needed to calculate the net wall area.
+To make our tool function, we need to extract information about the exterior walls. For an exterior load-bearing wall: the material layers and their thicknesses, the orientation of the wall, its dimensions (length, height, area), and GWP if available. 
 
 **Q: Where is this in IFC?**<br>
 - IFCWall
 - IFCMaterial
-- IFCWindow
 - IFCElementQuantity
 <br>
 
