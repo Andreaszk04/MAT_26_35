@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" id="Definitions_WallTool" targetNamespace="http://bpmn.io/schema/bpmn" exporter="bpmn-js (https://demo.bpmn.io)" exporterVersion="18.33.1">
+  <bpmn:collaboration id="Collab_WallTool">
+    <bpmn:participant id="Pool_WallTool" name="Exterior wall GWP tool" processRef="Process_WallTool" />
+  </bpmn:collaboration>
+  <bpmn:process id="Process_WallTool" isExecutable="false">
+    <bpmn:laneSet id="LaneSet_1">
+      <bpmn:lane id="Lane_Data" name="Data sources" />
+      <bpmn:lane id="Lane_Tool" name="Tool (Python / IfcOpenShell)">
+        <bpmn:flowNodeRef>ChkReq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GwReq</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ErrRep</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Capt</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Layers</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Map</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GwMatch</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Unm</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Merge1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Factor</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>CalcMat</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>CalcTot</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>ChkBR</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GwBR</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Flag</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Merge2</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Report</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_User" name="User (BIM modeller / engineer)">
+        <bpmn:flowNodeRef>Start</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Upload</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Fix</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Review</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>GwChange</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>End</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="Start" name="Start">
+      <bpmn:outgoing>Flow_Start_Upload</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:task id="Upload" name="Load IFC model and enter floor area">
+      <bpmn:incoming>Flow_Start_Upload</bpmn:incoming>
+      <bpmn:incoming>Flow_Fix_Upload</bpmn:incoming>
+      <bpmn:outgoing>Flow_Upload_ChkReq</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="ChkReq" name="Validate model against IDS (IsExternal, material layer sets, quantities)">
+      <bpmn:incoming>Flow_Upload_ChkReq</bpmn:incoming>
+      <bpmn:outgoing>Flow_ChkReq_GwReq</bpmn:outgoing>
+      <bpmn:property id="Prop_ChkReq" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DIA_DO_IFC_ChkReq">
+        <bpmn:sourceRef>DO_IFC</bpmn:sourceRef>
+        <bpmn:targetRef>Prop_ChkReq</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+      <bpmn:dataInputAssociation id="DIA_DO_IDS_ChkReq">
+        <bpmn:sourceRef>DO_IDS</bpmn:sourceRef>
+        <bpmn:targetRef>Prop_ChkReq</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="GwReq" name="Requirements fulfilled?">
+      <bpmn:incoming>Flow_ChkReq_GwReq</bpmn:incoming>
+      <bpmn:outgoing>Flow_GwReq_ErrRep</bpmn:outgoing>
+      <bpmn:outgoing>Flow_GwReq_Capt</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="ErrRep" name="Report missing or wrong information">
+      <bpmn:incoming>Flow_GwReq_ErrRep</bpmn:incoming>
+      <bpmn:outgoing>Flow_ErrRep_Fix</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Fix" name="Correct / update BIM model">
+      <bpmn:incoming>Flow_ErrRep_Fix</bpmn:incoming>
+      <bpmn:incoming>Flow_GwChange_Fix</bpmn:incoming>
+      <bpmn:outgoing>Flow_Fix_Upload</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Capt" name="Get exterior walls (Pset_WallCommon.IsExternal)">
+      <bpmn:incoming>Flow_GwReq_Capt</bpmn:incoming>
+      <bpmn:outgoing>Flow_Capt_Layers</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Layers" name="Read material layers">
+      <bpmn:incoming>Flow_Capt_Layers</bpmn:incoming>
+      <bpmn:outgoing>Flow_Layers_Map</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Map" name="Map IFC material names to general classes">
+      <bpmn:incoming>Flow_Layers_Map</bpmn:incoming>
+      <bpmn:outgoing>Flow_Map_GwMatch</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="GwMatch" name="All materials matched?">
+      <bpmn:incoming>Flow_Map_GwMatch</bpmn:incoming>
+      <bpmn:outgoing>Flow_GwMatch_Merge1</bpmn:outgoing>
+      <bpmn:outgoing>Flow_GwMatch_Unm</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Unm" name="Log unmatched materials">
+      <bpmn:incoming>Flow_GwMatch_Unm</bpmn:incoming>
+      <bpmn:outgoing>Flow_Unm_Merge1</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Merge1" name="">
+      <bpmn:incoming>Flow_GwMatch_Merge1</bpmn:incoming>
+      <bpmn:incoming>Flow_Unm_Merge1</bpmn:incoming>
+      <bpmn:outgoing>Flow_Merge1_Factor</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Factor" name="Attach GWP factor to each material layer">
+      <bpmn:incoming>Flow_Merge1_Factor</bpmn:incoming>
+      <bpmn:outgoing>Flow_Factor_CalcMat</bpmn:outgoing>
+      <bpmn:property id="Prop_Factor" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DIA_DS_GWP_Factor">
+        <bpmn:sourceRef>DS_GWP</bpmn:sourceRef>
+        <bpmn:targetRef>Prop_Factor</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:task>
+    <bpmn:task id="CalcMat" name="Calculate GWP per material">
+      <bpmn:incoming>Flow_Factor_CalcMat</bpmn:incoming>
+      <bpmn:outgoing>Flow_CalcMat_CalcTot</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="CalcTot" name="Calculate total GWP over 50 years&#10;[kg CO2e/m2/year]">
+      <bpmn:incoming>Flow_CalcMat_CalcTot</bpmn:incoming>
+      <bpmn:outgoing>Flow_CalcTot_ChkBR</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="ChkBR" name="Compare result with BR18 limit value">
+      <bpmn:incoming>Flow_CalcTot_ChkBR</bpmn:incoming>
+      <bpmn:outgoing>Flow_ChkBR_GwBR</bpmn:outgoing>
+      <bpmn:property id="Prop_ChkBR" name="__targetRef_placeholder" />
+      <bpmn:dataInputAssociation id="DIA_DS_BR18_ChkBR">
+        <bpmn:sourceRef>DS_BR18</bpmn:sourceRef>
+        <bpmn:targetRef>Prop_ChkBR</bpmn:targetRef>
+      </bpmn:dataInputAssociation>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="GwBR" name="Below BR18 limit value?">
+      <bpmn:incoming>Flow_ChkBR_GwBR</bpmn:incoming>
+      <bpmn:outgoing>Flow_GwBR_Merge2</bpmn:outgoing>
+      <bpmn:outgoing>Flow_GwBR_Flag</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Flag" name="Flag non-compliances">
+      <bpmn:incoming>Flow_GwBR_Flag</bpmn:incoming>
+      <bpmn:outgoing>Flow_Flag_Merge2</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="Merge2" name="">
+      <bpmn:incoming>Flow_GwBR_Merge2</bpmn:incoming>
+      <bpmn:incoming>Flow_Flag_Merge2</bpmn:incoming>
+      <bpmn:outgoing>Flow_Merge2_Report</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:task id="Report" name="Generate report: total GWP, BR18 compliance, excluded materials">
+      <bpmn:incoming>Flow_Merge2_Report</bpmn:incoming>
+      <bpmn:outgoing>Flow_Report_Review</bpmn:outgoing>
+      <bpmn:dataOutputAssociation id="DOA_Report_DO_Report">
+        <bpmn:targetRef>DO_Report</bpmn:targetRef>
+      </bpmn:dataOutputAssociation>
+    </bpmn:task>
+    <bpmn:task id="Review" name="Review results and largest contributors">
+      <bpmn:incoming>Flow_Report_Review</bpmn:incoming>
+      <bpmn:outgoing>Flow_Review_GwChange</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:exclusiveGateway id="GwChange" name="Change material?">
+      <bpmn:incoming>Flow_Review_GwChange</bpmn:incoming>
+      <bpmn:outgoing>Flow_GwChange_End</bpmn:outgoing>
+      <bpmn:outgoing>Flow_GwChange_Fix</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="End" name="Material chosen">
+      <bpmn:incoming>Flow_GwChange_End</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:dataStoreReference id="DS_GWP" name="Generic GWP factors" />
+    <bpmn:dataStoreReference id="DS_BR18" name="BR18 U-value requirments" />
+    <bpmn:dataObjectReference id="DO_Report" name="Result report" dataObjectRef="Obj_DO_Report" />
+    <bpmn:dataObject id="Obj_DO_Report" />
+    <bpmn:dataObjectReference id="DO_IDS" name="IDS-file" dataObjectRef="Obj_DO_IDS" />
+    <bpmn:dataObject id="Obj_DO_IDS" />
+    <bpmn:dataObjectReference id="DO_IFC" name="IFC-model" dataObjectRef="Obj_DO_IFC" />
+    <bpmn:dataObject id="Obj_DO_IFC" />
+    <bpmn:sequenceFlow id="Flow_Start_Upload" sourceRef="Start" targetRef="Upload" />
+    <bpmn:sequenceFlow id="Flow_Fix_Upload" sourceRef="Fix" targetRef="Upload" />
+    <bpmn:sequenceFlow id="Flow_Upload_ChkReq" sourceRef="Upload" targetRef="ChkReq" />
+    <bpmn:sequenceFlow id="Flow_ChkReq_GwReq" sourceRef="ChkReq" targetRef="GwReq" />
+    <bpmn:sequenceFlow id="Flow_GwReq_ErrRep" name="No" sourceRef="GwReq" targetRef="ErrRep" />
+    <bpmn:sequenceFlow id="Flow_GwReq_Capt" name="Yes" sourceRef="GwReq" targetRef="Capt" />
+    <bpmn:sequenceFlow id="Flow_ErrRep_Fix" sourceRef="ErrRep" targetRef="Fix" />
+    <bpmn:sequenceFlow id="Flow_GwChange_Fix" name="Yes" sourceRef="GwChange" targetRef="Fix" />
+    <bpmn:sequenceFlow id="Flow_Capt_Layers" sourceRef="Capt" targetRef="Layers" />
+    <bpmn:sequenceFlow id="Flow_Layers_Map" sourceRef="Layers" targetRef="Map" />
+    <bpmn:sequenceFlow id="Flow_Map_GwMatch" sourceRef="Map" targetRef="GwMatch" />
+    <bpmn:sequenceFlow id="Flow_GwMatch_Merge1" name="Yes" sourceRef="GwMatch" targetRef="Merge1" />
+    <bpmn:sequenceFlow id="Flow_GwMatch_Unm" name="No" sourceRef="GwMatch" targetRef="Unm" />
+    <bpmn:sequenceFlow id="Flow_Unm_Merge1" sourceRef="Unm" targetRef="Merge1" />
+    <bpmn:sequenceFlow id="Flow_Merge1_Factor" sourceRef="Merge1" targetRef="Factor" />
+    <bpmn:sequenceFlow id="Flow_Factor_CalcMat" sourceRef="Factor" targetRef="CalcMat" />
+    <bpmn:sequenceFlow id="Flow_CalcMat_CalcTot" sourceRef="CalcMat" targetRef="CalcTot" />
+    <bpmn:sequenceFlow id="Flow_CalcTot_ChkBR" sourceRef="CalcTot" targetRef="ChkBR" />
+    <bpmn:sequenceFlow id="Flow_ChkBR_GwBR" sourceRef="ChkBR" targetRef="GwBR" />
+    <bpmn:sequenceFlow id="Flow_GwBR_Merge2" name="Yes" sourceRef="GwBR" targetRef="Merge2" />
+    <bpmn:sequenceFlow id="Flow_GwBR_Flag" name="No" sourceRef="GwBR" targetRef="Flag" />
+    <bpmn:sequenceFlow id="Flow_Flag_Merge2" sourceRef="Flag" targetRef="Merge2" />
+    <bpmn:sequenceFlow id="Flow_Merge2_Report" sourceRef="Merge2" targetRef="Report" />
+    <bpmn:sequenceFlow id="Flow_Report_Review" sourceRef="Report" targetRef="Review" />
+    <bpmn:sequenceFlow id="Flow_Review_GwChange" sourceRef="Review" targetRef="GwChange" />
+    <bpmn:sequenceFlow id="Flow_GwChange_End" name="No" sourceRef="GwChange" targetRef="End" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="Diagram_1">
+    <bpmndi:BPMNPlane id="Plane_1" bpmnElement="Collab_WallTool">
+      <bpmndi:BPMNShape id="Pool_WallTool_di" bpmnElement="Pool_WallTool" isHorizontal="true">
+        <dc:Bounds x="160" y="40" width="2600" height="760" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Data_di" bpmnElement="Lane_Data" isHorizontal="true">
+        <dc:Bounds x="190" y="640" width="2570" height="160" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_Tool_di" bpmnElement="Lane_Tool" isHorizontal="true">
+        <dc:Bounds x="190" y="280" width="2570" height="360" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_User_di" bpmnElement="Lane_User" isHorizontal="true">
+        <dc:Bounds x="190" y="40" width="2570" height="240" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Start_di" bpmnElement="Start">
+        <dc:Bounds x="242" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="249" y="183" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Upload_di" bpmnElement="Upload">
+        <dc:Bounds x="325" y="120" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ChkReq_di" bpmnElement="ChkReq">
+        <dc:Bounds x="325" y="420" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GwReq_di" bpmnElement="GwReq" isMarkerVisible="true">
+        <dc:Bounds x="525" y="435" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="495" y="490" width="110" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ErrRep_di" bpmnElement="ErrRep">
+        <dc:Bounds x="485" y="300" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Fix_di" bpmnElement="Fix">
+        <dc:Bounds x="485" y="120" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Capt_di" bpmnElement="Capt">
+        <dc:Bounds x="635" y="420" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Layers_di" bpmnElement="Layers">
+        <dc:Bounds x="805" y="420" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Map_di" bpmnElement="Map">
+        <dc:Bounds x="975" y="420" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GwMatch_di" bpmnElement="GwMatch" isMarkerVisible="true">
+        <dc:Bounds x="1165" y="435" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1135" y="390" width="110" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Unm_di" bpmnElement="Unm">
+        <dc:Bounds x="1125" y="530" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Merge1_di" bpmnElement="Merge1" isMarkerVisible="true">
+        <dc:Bounds x="1295" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Factor_di" bpmnElement="Factor">
+        <dc:Bounds x="1385" y="420" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="CalcMat_di" bpmnElement="CalcMat">
+        <dc:Bounds x="1555" y="420" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="CalcTot_di" bpmnElement="CalcTot">
+        <dc:Bounds x="1725" y="420" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="ChkBR_di" bpmnElement="ChkBR">
+        <dc:Bounds x="1895" y="420" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GwBR_di" bpmnElement="GwBR" isMarkerVisible="true">
+        <dc:Bounds x="2075" y="435" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2045" y="490" width="110" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Flag_di" bpmnElement="Flag">
+        <dc:Bounds x="2035" y="300" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Merge2_di" bpmnElement="Merge2" isMarkerVisible="true">
+        <dc:Bounds x="2205" y="435" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Report_di" bpmnElement="Report">
+        <dc:Bounds x="2315" y="420" width="130" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Review_di" bpmnElement="Review">
+        <dc:Bounds x="2315" y="120" width="130" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="GwChange_di" bpmnElement="GwChange" isMarkerVisible="true">
+        <dc:Bounds x="2505" y="135" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2487" y="190" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="End_di" bpmnElement="End">
+        <dc:Bounds x="2642" y="142" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2621" y="183" width="78" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DS_GWP_di" bpmnElement="DS_GWP" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
+        <dc:Bounds x="1425" y="695" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1399" y="750" width="104" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DS_BR18_di" bpmnElement="DS_BR18" bioc:stroke="#6b3c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#6b3c00">
+        <dc:Bounds x="1935" y="695" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1926" y="750" width="69" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DO_Report_di" bpmnElement="DO_Report" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="2362" y="695" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2349" y="750" width="63" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DO_IDS_di" bpmnElement="DO_IDS" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="412" y="695" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="413" y="750" width="37" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="DO_IFC_di" bpmnElement="DO_IFC" bioc:stroke="#0d4372" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#0d4372">
+        <dc:Bounds x="322" y="695" width="36" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="315" y="750" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_Start_Upload_di" bpmnElement="Flow_Start_Upload">
+        <di:waypoint x="278" y="160" />
+        <di:waypoint x="325" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Fix_Upload_di" bpmnElement="Flow_Fix_Upload">
+        <di:waypoint x="485" y="160" />
+        <di:waypoint x="455" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Upload_ChkReq_di" bpmnElement="Flow_Upload_ChkReq">
+        <di:waypoint x="390" y="200" />
+        <di:waypoint x="390" y="420" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_ChkReq_GwReq_di" bpmnElement="Flow_ChkReq_GwReq">
+        <di:waypoint x="455" y="460" />
+        <di:waypoint x="525" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GwReq_ErrRep_di" bpmnElement="Flow_GwReq_ErrRep">
+        <di:waypoint x="550" y="435" />
+        <di:waypoint x="550" y="380" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="554" y="388" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GwReq_Capt_di" bpmnElement="Flow_GwReq_Capt">
+        <di:waypoint x="575" y="460" />
+        <di:waypoint x="635" y="460" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="609" y="440" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_ErrRep_Fix_di" bpmnElement="Flow_ErrRep_Fix">
+        <di:waypoint x="550" y="300" />
+        <di:waypoint x="550" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GwChange_Fix_di" bpmnElement="Flow_GwChange_Fix">
+        <di:waypoint x="2530" y="135" />
+        <di:waypoint x="2530" y="75" />
+        <di:waypoint x="550" y="75" />
+        <di:waypoint x="550" y="120" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2534" y="85" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Capt_Layers_di" bpmnElement="Flow_Capt_Layers">
+        <di:waypoint x="765" y="460" />
+        <di:waypoint x="805" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Layers_Map_di" bpmnElement="Flow_Layers_Map">
+        <di:waypoint x="935" y="460" />
+        <di:waypoint x="975" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Map_GwMatch_di" bpmnElement="Flow_Map_GwMatch">
+        <di:waypoint x="1105" y="460" />
+        <di:waypoint x="1165" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GwMatch_Merge1_di" bpmnElement="Flow_GwMatch_Merge1">
+        <di:waypoint x="1215" y="460" />
+        <di:waypoint x="1295" y="460" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1259" y="440" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GwMatch_Unm_di" bpmnElement="Flow_GwMatch_Unm">
+        <di:waypoint x="1190" y="485" />
+        <di:waypoint x="1190" y="530" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1194" y="488" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Unm_Merge1_di" bpmnElement="Flow_Unm_Merge1">
+        <di:waypoint x="1255" y="570" />
+        <di:waypoint x="1320" y="570" />
+        <di:waypoint x="1320" y="485" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Merge1_Factor_di" bpmnElement="Flow_Merge1_Factor">
+        <di:waypoint x="1345" y="460" />
+        <di:waypoint x="1385" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Factor_CalcMat_di" bpmnElement="Flow_Factor_CalcMat">
+        <di:waypoint x="1515" y="460" />
+        <di:waypoint x="1555" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_CalcMat_CalcTot_di" bpmnElement="Flow_CalcMat_CalcTot">
+        <di:waypoint x="1685" y="460" />
+        <di:waypoint x="1725" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_CalcTot_ChkBR_di" bpmnElement="Flow_CalcTot_ChkBR">
+        <di:waypoint x="1855" y="460" />
+        <di:waypoint x="1895" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_ChkBR_GwBR_di" bpmnElement="Flow_ChkBR_GwBR">
+        <di:waypoint x="2025" y="460" />
+        <di:waypoint x="2075" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GwBR_Merge2_di" bpmnElement="Flow_GwBR_Merge2">
+        <di:waypoint x="2125" y="460" />
+        <di:waypoint x="2205" y="460" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2169" y="440" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GwBR_Flag_di" bpmnElement="Flow_GwBR_Flag">
+        <di:waypoint x="2100" y="435" />
+        <di:waypoint x="2100" y="380" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2104" y="388" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Flag_Merge2_di" bpmnElement="Flow_Flag_Merge2">
+        <di:waypoint x="2165" y="340" />
+        <di:waypoint x="2230" y="340" />
+        <di:waypoint x="2230" y="435" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Merge2_Report_di" bpmnElement="Flow_Merge2_Report">
+        <di:waypoint x="2255" y="460" />
+        <di:waypoint x="2315" y="460" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Report_Review_di" bpmnElement="Flow_Report_Review">
+        <di:waypoint x="2380" y="420" />
+        <di:waypoint x="2380" y="200" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_Review_GwChange_di" bpmnElement="Flow_Review_GwChange">
+        <di:waypoint x="2445" y="160" />
+        <di:waypoint x="2505" y="160" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_GwChange_End_di" bpmnElement="Flow_GwChange_End">
+        <di:waypoint x="2555" y="160" />
+        <di:waypoint x="2642" y="160" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2603" y="140" width="24" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DIA_DO_IFC_ChkReq_di" bpmnElement="DIA_DO_IFC_ChkReq">
+        <di:waypoint x="339" y="695" />
+        <di:waypoint x="391" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DIA_DO_IDS_ChkReq_di" bpmnElement="DIA_DO_IDS_ChkReq">
+        <di:waypoint x="433" y="695" />
+        <di:waypoint x="386" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DIA_DS_GWP_Factor_di" bpmnElement="DIA_DS_GWP_Factor">
+        <di:waypoint x="1450" y="695" />
+        <di:waypoint x="1450" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DIA_DS_BR18_ChkBR_di" bpmnElement="DIA_DS_BR18_ChkBR">
+        <di:waypoint x="1960" y="695" />
+        <di:waypoint x="1960" y="500" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="DOA_Report_DO_Report_di" bpmnElement="DOA_Report_DO_Report">
+        <di:waypoint x="2380" y="500" />
+        <di:waypoint x="2380" y="695" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
